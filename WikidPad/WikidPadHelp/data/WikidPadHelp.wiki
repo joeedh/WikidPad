@@ -37,7 +37,7 @@ Then just start typing text with WikiWords to create your wiki.
     * TodoItems (track todos, questions, issues)
     * [Insertions]
     * WikiBookmarks
-
+rel://files/_2HIB4OWGMQXJKEW12FMR.png
     * RenamingWikiWords
     * WikiFonts
     * Wiki word AutoCompletion

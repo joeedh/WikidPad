@@ -99,7 +99,9 @@ elif platform.uname()[0] == "Darwin":
     # Mac OS 9 (or 9.1.0 specifically?)
     _dll = CDLL("libsqlite3.0.dylib")
 else:
-    _dll = cdll.sqlite3
+    import os
+    print(os.getcwd())
+    _dll = CDLL("./sqlite3.dll") #cdll.sqlite3
 
 
 

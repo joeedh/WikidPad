@@ -25,6 +25,10 @@ from wx import GetApp
 from pwiki.WikiExceptions import *   # TODO make normal import
 from pwiki import SearchAndReplace
 
+import pwiki.sqlite3api as sqlite
+from . import DbStructure
+from .DbStructure import createWikiDB, WikiDBExistsException
+
 try:
     import pwiki.sqlite3api as sqlite
     from . import DbStructure

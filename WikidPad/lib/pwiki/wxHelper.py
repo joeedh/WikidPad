@@ -28,25 +28,14 @@ def _unescapeWithRe(text):
 
 
 
-class wxSourceId:
+class wxSourceId (int):
     """
     Can be used either as id number or as source in wx.EvtHandler.Bind() calls
     """
-    __slots__ = ("_value",)
-
-    def __init__(self, value):
-        self._value = value
+    #__slots__ = ("_value",)
     
-    def __int__(self):
-        return self._value
-    
-    def __eq__(self, other):
-        return self._value == int(other)
-        
-    def __hash__(self):
-        return hash(self._value)
-    
-    GetId = __int__
+    def GetId(self):
+        return self.__int__()
 
 
 class wxIdPool:

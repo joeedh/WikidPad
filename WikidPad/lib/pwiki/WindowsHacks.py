@@ -270,7 +270,7 @@ class SHFILEOPSTRUCTW(ctypes.Structure):
         ("pTo", ctypes.c_wchar_p),
         ("fFlags", ctypes.c_uint),
         ("fAnyOperationsAborted", ctypes.c_uint),
-        ("hNameMappings", ctypes.c_uint),
+        ("hNameMappings", ctypes.c_void_p),
         ("lpszProgressTitle", ctypes.c_wchar_p)
         ]
 
@@ -310,6 +310,32 @@ except AttributeError:
 
 if SHFileOperationW is not None:
     def _shellFileOp(opcode, srcPath, dstPath):
+        #Emulate SHFileOperationW which is not working
+        if dstPath is not None:
+            dstDir = os.path.dirname(dstPath)
+
+            if not os.path.exists(pathEnc(dstDir)):
+                os.makedirs(dstDir)
+
+        if opcode == FO_DELETE:
+            os.remove(srcPath)
+            return
+    
+        if opcode not in [FO_COPY, FO_MOVE]:
+            print("Invalid opcode", opcode)
+            return
+        
+        st = os.stat(srcPath)
+        with open(srcPath, "rb") as file:
+            buf = file.read()
+        
+        with open(dstPath, "wb") as file:
+            file.write(buf)
+        
+        if opcode == FO_MOVE:
+            os.utime(dstPath, ns=(st.st_atime_ns, st.st_mtime_ns))
+
+    def _shellFileOpOld(opcode, srcPath, dstPath):
         fileOp = SHFILEOPSTRUCTW()
 
         srcPathWc = ctypes.c_wchar_p(srcPath + "\0")

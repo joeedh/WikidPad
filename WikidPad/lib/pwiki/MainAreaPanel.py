@@ -97,6 +97,9 @@ class MainAreaPanel(aui.AuiNotebook, MiscEventSourceMixin, StorablePerspective):
 #         self.Bind(wx.EVT_SET_FOCUS, self.OnFocused)
         self.Bind(wx.EVT_KILL_FOCUS, self.OnKillFocus)
 
+        print(wx.EVT_MENU)
+        print(GUI_ID.CMD_CLOSE_THIS_TAB)
+        
         self.Bind(wx.EVT_MENU, self.OnCloseThisTab,
                 id=GUI_ID.CMD_CLOSE_THIS_TAB)
         self.Bind(wx.EVT_MENU, self.OnCloseCurrentTab,

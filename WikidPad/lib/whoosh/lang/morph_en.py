@@ -935,7 +935,7 @@ def variations(word):
 
 if __name__ == '__main__':
     import time
-    t = time.clock()
+    t = time.time()
     s = variations("rendering")
-    print(time.clock() - t)
+    print(time.time() - t)
     print(len(s))

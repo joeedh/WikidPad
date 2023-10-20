@@ -3467,8 +3467,8 @@ class AuiNotebook(wx.Panel):
         # should happen around the middle
         if tab_ctrl_count < 2:
             new_split_size = self.GetClientSize()
-            new_split_size.x /= 2
-            new_split_size.y /= 2
+            new_split_size.x //= 2
+            new_split_size.y //= 2
 
         else:
 
@@ -4610,8 +4610,8 @@ class AuiNotebook(wx.Panel):
             # because there are two panes, always split them
             # equally
             split_size = self.GetClientSize()
-            split_size.x /= 2
-            split_size.y /= 2
+            split_size.x //= 2
+            split_size.y //= 2
 
         # create a new tab frame
         new_tabs = TabFrame(self)
